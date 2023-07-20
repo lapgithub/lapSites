@@ -134,7 +134,7 @@
 
     sudo supervisorctl start laravel-worker:*
 
-## docker 目录迁移
+## windown docker 目录迁移
 
     1、首先关闭docker
 
