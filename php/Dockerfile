@@ -37,8 +37,6 @@ RUN if [ ${PHP_DOCKER_VERSION} < 74 ]; then \
      docker-php-ext-install gd; \
 fi
 
-
-
 #### 服务器相关工具
 ############################## cron #################################
 ARG CRONTAB_INSTALL=false
