@@ -175,8 +175,8 @@ services:
       - 5672:${RABBITMQ_PORT_PROGRAM}
       - 15672:${RABBITMQ_PORT_ADMIN}
     volumes:
-      - ${ENVIRONMENT}${RABBITMQ_VERSION}/data/:/var/lib/rabbitmq/ :ro
-      - ${ENVIRONMENT}${RABBITMQ_VERSION}/logs/:/var/log/rabbitmq/ :ro
+      - ${ENVIRONMENT}${RABBITMQ_VERSION}/data/:/var/lib/rabbitmq/
+      - ${ENVIRONMENT}${RABBITMQ_VERSION}/logs/:/var/log/rabbitmq/
     environment:
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
