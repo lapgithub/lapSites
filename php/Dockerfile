@@ -5,14 +5,11 @@
 FROM php:7.4-fpm
 
 LABEL AUTHOR='lap';
+
 ARG PHP_DOCKER_VERSION=73
-
-RUN if [ ${PHP_DOCKER_VERSION} < 74 ];  then \
-    sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list \
-       && sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list.d/buster.list; \
-fi
-
 RUN if [ ${PHP_DOCKER_VERSION} < 74 ]; then \
+      sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list \
+        && sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list.d/buster.list; \
       apt-get update && \
       apt-get install -yqq \
         libfreetype6-dev \
