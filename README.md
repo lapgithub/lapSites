@@ -81,20 +81,32 @@
 
 #### 3、docker-compose 使用
     ** 如有pcll install 版本不适合，请到 http://pecl.php.net/ 查看版本
-    构建
+    构建docker-compose 全部
+    docker-compose build
+
+    构建单个
     docker-compose build xxx
 
-    后台运行（首次构建）
+    构建启动容器
     docker-compose up -d
+
+    清除当前容器（数据也清除）
+    docker-compose down
+
+    查看容器日志 logs后加 -f 看时实
+    docker-compose logs xxx
 
     查看运行实列
     docker-compose ps
 
-    重启
-    docker-compose restart
+    暂停指定服务
+    docker-compose pause xxx
 
-    关闭
-    docker-compose down
+    重启
+    docker-compose restart  xxx
+
+    删除指定的服务的容器
+    docker-compose rm xxx
 
     进入容器
     docker exec -it xxx bash
