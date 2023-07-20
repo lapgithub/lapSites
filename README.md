@@ -200,10 +200,16 @@
 
 
 ### docker 安装源
-    "https://docker.mirrors.ustc.edu.cn", 
-    "https://cr.console.aliyun.com", 
-    "https://mirror.ccs.tencentyun.com", 
-    "https://registry.docker-cn.com", 
-    "http://hub-mirror.c.163.com", 
-    "https://docker.mirrors.ustc.edu.cn", 
-    "https://docker.mirrors.ustc.edu.cn"
+    vim /etc/docker/daemon.json
+    {
+    "registry-mirrors": [
+        "https://docker.mirrors.ustc.edu.cn", 
+        "https://cr.console.aliyun.com", 
+        "https://mirror.ccs.tencentyun.com", 
+        "https://registry.docker-cn.com", 
+        "http://hub-mirror.c.163.com", 
+        "https://docker.mirrors.ustc.edu.cn", 
+        "https://docker.mirrors.ustc.edu.cn"
+        ]
+    }
+
