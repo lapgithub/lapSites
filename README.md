@@ -144,17 +144,23 @@
     wsl --unregister docker-desktop-data
     wsl --import docker-desktop-data D:\docker\ D:\docker\docker-desktop-data.tar
 
-## linux查看日志
-    
+## linux常用操作命令
+    文件test.log的开头十行
+    head -n 10 test.log
+
+    文件test.log的尾部十行
+    head -n 10 test.log
+
     根据关键词搜索如 文件为：test.log, 关键词为：product.ERROR
     cat -n test.log |grep "product.ERROR"
 
     根据时间查看日志区间
     grep '16:2[3-9]' access.log
     
-    分页查看文件 -100一次显示num行，+2从第num行开始显示
-    more -100 +2 access.log
+    可以向前向后access.log内容，并在屏幕底部显示已显示内容的百分比,空格下一屏、回车下一行。U上半屏、Y上一行，[PageDown]下翻一页，[PageUp]上翻一页，Q退出less命令
+    less -m access.log
 
+    
     ps aux|grep {php}
     ps -ef|grep {php}
     
@@ -179,7 +185,3 @@
 
     修改文件权限
     chmod -R 777 ./logs
-
-
-git config --global user.name '名称'
-git config --global user.email '邮箱'
