@@ -161,7 +161,7 @@
     head -n 10 test.log
 
     文件test.log的尾部十行
-    head -n 10 test.log
+    tail -n 10 test.log
 
     根据关键词搜索如 文件为：test.log, 关键词为：product.ERROR
     cat -n test.log |grep "product.ERROR"
