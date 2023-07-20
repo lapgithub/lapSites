@@ -1,4 +1,4 @@
-version: '3.3'
+version: '2.2'
 services:
   php-fpm:
     container_name:
@@ -11,6 +11,7 @@ services:
       dockerfile: ./Dockerfile
       args:
         - PHP_DOCKER_IMAGE=${PHP_DOCKER_IMAGE}
+        - PHP_DOCKER_VERSION=${PHP_DOCKER_VERSION}
         - SUPERVISOR_INSTALL=${SUPERVISOR_INSTALL}
         - CRONTAB_INSTALL=${CRONTAB_INSTALL}
         - SSH_CLIENT_INSTALL=${SSH_CLIENT_INSTALL}
