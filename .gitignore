@@ -39,6 +39,6 @@
 /supervisor/logs/*
 !/supervisor/logs/.gitkeep
 
-/www/*
+/www/
 .idea/
 .env

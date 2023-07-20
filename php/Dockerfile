@@ -31,7 +31,8 @@ RUN if [ ${PHP_DOCKER_VERSION} < 74 ]; then \
         libpng-dev \
         libwebp-dev \
         libjpeg-dev \
-        libfreetype6-dev; \
+        libfreetype6-dev \
+		pkg-config; \
       docker-php-ext-configure gd \
       --with-webp=/usr/include/webp \
       --with-jpeg=/usr/include \

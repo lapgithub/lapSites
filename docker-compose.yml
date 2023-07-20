@@ -1,3 +1,4 @@
+version: '3.3'
 services:
   php-fpm:
     container_name:
@@ -5,9 +6,8 @@ services:
     image:
       ${PHP_DOCKER_IMAGE}${PHP_DOCKER_VERSION}
     build:
-      context:
-        ./php
-      args:
+      ${PHP_DOCKER_IMAGE}
+    args:
         - PHP_DOCKER_IMAGE=${PHP_DOCKER_IMAGE}
         - SUPERVISOR_INSTALL=${SUPERVISOR_INSTALL}
         - CRONTAB_INSTALL=${CRONTAB_INSTALL}
@@ -63,7 +63,7 @@ services:
     image:
       ${MYSQL_VERSION}
     build:
-      ./${MYSQL_VERSION}
+      ${MYSQL_VERSION}
     restart:
       always
     ports:
@@ -85,7 +85,7 @@ services:
     image:
       ${NGINX_VERSION}
     build:
-      ./${NGINX_VERSION}
+      ${NGINX_VERSION}
     restart:
       always
     ports:
@@ -105,7 +105,7 @@ services:
     image:
       ${REDIS_VERSION}
     build:
-      ./${REDIS_VERSION}
+      ${REDIS_VERSION}
     restart:
       always
     ports:
@@ -123,7 +123,7 @@ services:
     image:
       ${MONGO_VERSION}
     build:
-      ./${MONGO_VERSION}
+      ${MONGO_VERSION}
     restart:
       always
     ports:
@@ -144,7 +144,7 @@ services:
     image:
       ${POSTGRES_VERSION}
     build:
-      ./${POSTGRES_VERSION}
+      ${POSTGRES_VERSION}
     restart:
       always
     ports:
@@ -166,7 +166,7 @@ services:
     image:
       ${RABBITMQ_VERSION}
     build:
-      ./${RABBITMQ_VERSION}
+      ${RABBITMQ_VERSION}
     restart:
       always
     ports:
@@ -187,7 +187,7 @@ services:
     image:
       ${ELASTICSEARCH_VERSION}
     build:
-      ./${ELK_DIRECTORY}${ELASTICSEARCH_VERSION}
+      ${ELK_DIRECTORY}${ELASTICSEARCH_VERSION}
     restart:
       always
     ports:
@@ -209,7 +209,7 @@ services:
     image:
       ${KIBANA_VERSION}
     build:
-      ./${ELK_DIRECTORY}${KIBANA_VERSION}
+      ${ELK_DIRECTORY}${KIBANA_VERSION}
     ports:
       - 5601:${KIBANA_PORT}
     volumes:
@@ -227,7 +227,7 @@ services:
     image:
       ${LOGSTASH_VERSION}
     build:
-      ./${ELK_DIRECTORY}${LOGSTASH_VERSION}
+      ${ELK_DIRECTORY}${LOGSTASH_VERSION}
     restart:
       always
     ports:
