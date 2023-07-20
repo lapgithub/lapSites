@@ -6,8 +6,8 @@ services:
     image:
       ${PHP_DOCKER_IMAGE}${PHP_DOCKER_VERSION}
     build:
-      ${PHP_DOCKER_IMAGE}
-    args:
+      context: ${PHP_DOCKER_IMAGE}/Dockerfile
+      args:
         - PHP_DOCKER_IMAGE=${PHP_DOCKER_IMAGE}
         - SUPERVISOR_INSTALL=${SUPERVISOR_INSTALL}
         - CRONTAB_INSTALL=${CRONTAB_INSTALL}
