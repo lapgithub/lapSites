@@ -1,6 +1,5 @@
-## 
-### lap docker说明
-    docker 安装源 linux 系统在/etc/docker/daemon.json、win直接面板改
+## lap docker说明
+#### 1、docker 安装源 linux 系统在/etc/docker/daemon.json、win直接面板改
 
     {
         "registry-mirrors": [
@@ -12,7 +11,7 @@
         ]
     }
 
-    docker-compose包含一下软件    
+#### 2、docker-compose包含一下软件    
 
     nginx:1.20
 
@@ -33,7 +32,7 @@
     kibana:7.14.1
 
     logstash:7.14.1
-#### 2、把 `.env`设置变量
+#### 3、把 `.env`设置变量
     
     跟目录项目、目录
     ENVIRONMENT=D:/environment/
@@ -92,7 +91,7 @@
     LOGSTASH_VERSION=logstash
     LOGSTASH_PORT=4560
 
-#### 3、docker-compose 使用
+#### 4、docker-compose 使用
     ** 如有pcll install 版本不适合，请到 http://pecl.php.net/ 查看版本
     构建docker-compose 全部
     docker-compose build
@@ -124,7 +123,7 @@
     进入容器
     docker exec -it xxx bash
 
-#### ui界面
+#### 5、ui界面
 
     rabbitmq
     http://127.0.0.1:15672/
@@ -135,7 +134,7 @@
     kibana
     http://127.0.0.1:5601/app/home#/
 
-#### 使用 supervisor 进程管理命令之前先启动 supervisord
+#### 6、使用 supervisor 进程管理命令之前先启动 supervisord
 
     supervisord -c /etc/supervisor/supervisord.conf
     supervisorctl status        //查看所有进程的状态
@@ -147,7 +146,7 @@
 
     sudo supervisorctl start laravel-worker:*
 
-## windown docker 目录迁移
+## 7、windown docker 目录迁移
 
     1、首先关闭docker
 
@@ -169,7 +168,7 @@
     wsl --unregister docker-desktop-data
     wsl --import docker-desktop-data D:\docker\ D:\docker\docker-desktop-data.tar
 
-## linux常用操作命令
+## 8、linux常用操作命令
     文件test.log的开头十行
     head -n 10 test.log
 
