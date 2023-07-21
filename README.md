@@ -1,11 +1,24 @@
-## lap docker说明
-#### 1、本docker-compose包含一下软件
+## 
+### lap docker说明
+    docker 安装源 linux 系统在/etc/docker/daemon.json、win直接面板改
+
+    {
+        "registry-mirrors": [
+            "https://cr.console.aliyun.com",        //阿里云
+            "https://mirror.ccs.tencentyun.com",    //腾讯云
+            "https://registry.docker-cn.com",       //Docker官方中国区
+            "http://hub-mirror.c.163.com",          //网易
+            "https://docker.mirrors.ustc.edu.cn"    //ustc
+        ]
+    }
+
+    docker-compose包含一下软件    
 
     nginx:1.20
 
-    php:7.3.5-fpm、php:7.4-fpm、php:8.1.0-fpm
+    php:5.6、7.0、7.1、7.2、7.3、7.4、8.0、8.1、8.2
 
-    mysql:5.7、mysql:8
+    mysql:5.7、8
 
     rabbitmq:3.9.5-management
 
@@ -197,19 +210,3 @@
 
     修改文件权限
     chmod -R 777 ./logs
-
-
-### docker 安装源
-    vim /etc/docker/daemon.json
-    {
-    "registry-mirrors": [
-        "https://docker.mirrors.ustc.edu.cn", 
-        "https://cr.console.aliyun.com", 
-        "https://mirror.ccs.tencentyun.com", 
-        "https://registry.docker-cn.com", 
-        "http://hub-mirror.c.163.com", 
-        "https://docker.mirrors.ustc.edu.cn", 
-        "https://docker.mirrors.ustc.edu.cn"
-        ]
-    }
-
