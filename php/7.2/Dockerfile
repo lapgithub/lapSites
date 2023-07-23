@@ -1,5 +1,4 @@
 FROM php:7.2-fpm
-
 LABEL AUTHOR='lap';
 
 RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
@@ -10,19 +9,19 @@ RUN apt-get update && \
     zlib1g-dev  \
     libicu-dev \
     pkg-config \
+    libfreetype6-dev \
+    libmcrypt-dev \
     libpng-dev \
     libwebp-dev \
-    libjpeg-dev \
-    libfreetype6-dev
+    libjpeg-dev
 
-## php扩展
-#
+# php扩展
 RUN pecl install mcrypt  \
     && docker-php-ext-enable mcrypt \
-    && docker-php-ext-configure  gd \
-    --with-webp=/usr/include/webp \
-    --with-jpeg=/usr/include \
-    --with-freetype=/usr/include \
+    && docker-php-ext-configure gd  \
+    --with-webp-dir=/usr/include/webp  \
+    --with-jpeg-dir=/usr/include/  \
+    --with-freetype-dir=/usr/include/freetype2 \
     && docker-php-ext-install gd \
     && docker-php-ext-configure intl \
     && docker-php-ext-install bcmath \
@@ -63,8 +62,8 @@ fi
 ############################## 文件安装 intl #################################
 ARG INSTALL_EXTEND_INTL=false
 RUN if [ ${INSTALL_EXTEND_INTL} = true ]; then \
-    docker-php-ext-install intl \
-;fi
+    docker-php-ext-install intl; \
+fi
 
 
 # pecl 安装
@@ -97,14 +96,6 @@ RUN if [ ${INSTALL_EXTEND_RABBITMQ} = true ];  then \
     && docker-php-ext-enable amqp; \
 fi
 
-############################## 文件安装 pgsql #################################
-ARG INSTALL_EXTEND_PGSQL=false
-RUN if [ ${INSTALL_EXTEND_PGSQL} = true ];  then \
-    apt-get install -y --on-install-recommends libpq-dev  \
-    && rm -r /var/lib/apt/lists/*  \
-    && docker-php-ext-install -j$(nproc) pgsql pdo_pgsql; \
-fi
-
 WORKDIR /tmp/
 ############################## 文件安装 zip #################################
 ARG INSTALL_EXTEND_ZIP=false
@@ -118,13 +109,21 @@ RUN if [ ${INSTALL_EXTEND_ZIP} = true ];  then \
     && rm -rf /tmp/libzip-1.2.0 tmp/libzip-1.2.0.tar.gz; \
 fi
 
-WORKDIR /www/
-############################## composer #################################
-ARG INSTALL_EXTEND_COMPOSER=false
-RUN if [ ${INSTALL_EXTEND_COMPOSER} = true ];  then \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-      && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/; \
+############################## 文件安装 pgsql #################################
+ARG INSTALL_EXTEND_PGSQL=false
+RUN if [ ${INSTALL_EXTEND_PGSQL} = true ];  then \
+    apt-get install -y --on-install-recommends libpq-dev  \
+    && rm -r /var/lib/apt/lists/*  \
+    && docker-php-ext-install -j$(nproc) pgsql pdo_pgsql; \
 fi
 
-
-
+WORKDIR /www/
+############################### composer #################################
+ARG INSTALL_EXTEND_COMPOSER=false
+RUN if [ ${INSTALL_EXTEND_COMPOSER} = true ];  then \
+    php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" \
+    && php composer-setup.php \
+    && php -r "unlink('composer-setup.php');" \
+    && mv composer.phar /usr/local/bin/composer \
+    && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/; \
+fi
