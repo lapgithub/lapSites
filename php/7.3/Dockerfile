@@ -119,9 +119,12 @@ RUN if [ ${INSTALL_EXTEND_PGSQL} = true ];  then \
 fi
 
 WORKDIR /www/
-############################## composer #################################
+############################### composer #################################
 ARG INSTALL_EXTEND_COMPOSER=false
 RUN if [ ${INSTALL_EXTEND_COMPOSER} = true ];  then \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" \
+    && php composer-setup.php \
+    && php -r "unlink('composer-setup.php');" \
+    && mv composer.phar /usr/local/bin/composer \
     && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/; \
 fi
