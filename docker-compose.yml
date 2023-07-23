@@ -2,53 +2,36 @@ version: '2.2'
 services:
   php-fpm:
     container_name:
-      ${PHP_DOCKER_IMAGE}${PHP_DOCKER_VERSION}
+      php${PHP_DOCKER_VERSION}
     image:
-      ${PHP_DOCKER_IMAGE}${PHP_DOCKER_VERSION}
+      php${PHP_DOCKER_VERSION}
     build:
       context:
-        ./${PHP_DOCKER_IMAGE}
-      dockerfile: ./Dockerfile
+        php/7.4/
+      dockerfile: Dockerfile
       args:
-        - PHP_DOCKER_IMAGE=${PHP_DOCKER_IMAGE}
-        - PHP_DOCKER_VERSION=${PHP_DOCKER_VERSION}
-        - SUPERVISOR_INSTALL=${SUPERVISOR_INSTALL}
-        - CRONTAB_INSTALL=${CRONTAB_INSTALL}
-        - SSH_CLIENT_INSTALL=${SSH_CLIENT_INSTALL}
-        - SSH_SERVER_INSTALL=${SSH_SERVER_INSTALL}
-        - VIM_INSTALL=${VIM_INSTALL}
-        - WGET_INSTALL=${WGET_INSTALL}
-        - PROCPS_INSTALL=${PROCPS_INSTALL}
-
-        - SOCKETS_INSTALL=${SOCKETS_INSTALL}
-        - BCMATH_INSTALL=${BCMATH_INSTALL}
-        - SYSVSEM_INSTALL=${SYSVSEM_INSTALL}
-        - PCNTL_INSTALL=${PCNTL_INSTALL}
-        - OPCACHE_INSTALL=${OPCACHE_INSTALL}
-        - PDO_MYSQL_INSTALL=${PDO_MYSQL_INSTALL}
-        - PDO_INSTALL=${PDO_INSTALL}
-        - MYSQLI_INSTALL=${MYSQLI_INSTALL}
-        - ZIP_INSTALL=${ZIP_INSTALL}
-
-        - REDIS_INSTALL=${REDIS_INSTALL}
-        - MONGODB_INSTALL=${MONGODB_INSTALL}
-        - SWOOLE_INSTALL=${SWOOLE_INSTALL}
-
-        - COMPOSER_INSTALL=${COMPOSER_INSTALL}
-        - RABBITMQ_INSTALL=${RABBITMQ_INSTALL}
-        - EXIF_INSTALL=${EXIF_INSTALL}
-        - INTL_INSTALL=${INTL_INSTALL}
-        - PGSQL_INSTALL=${PGSQL_INSTALL}
+        - INSTALL_EXTEND_SOCKETS=${INSTALL_EXTEND_SOCKETS}
+        - INSTALL_EXTEND_SYSVSEM=${INSTALL_EXTEND_SYSVSEM}
+        - INSTALL_EXTEND_PCNTL=${INSTALL_EXTEND_PCNTL}
+        - INSTALL_EXTEND_OPCACHE=${INSTALL_EXTEND_OPCACHE}
+        - INSTALL_EXTEND_EXIF=${INSTALL_EXTEND_EXIF}
+        - INSTALL_EXTEND_INTL=${INSTALL_EXTEND_INTL}
+        - INSTALL_EXTEND_REDIS=${INSTALL_EXTEND_REDIS}
+        - INSTALL_EXTEND_SWOOLE=${INSTALL_EXTEND_SWOOLE}
+        - INSTALL_EXTEND_MONGODB=${INSTALL_EXTEND_MONGODB}
+        - INSTALL_EXTEND_RABBITMQ=${INSTALL_EXTEND_RABBITMQ}
+        - INSTALL_EXTEND_PGSQL=${INSTALL_EXTEND_PGSQL}
+        - INSTALL_EXTEND_ZIP=${INSTALL_EXTEND_ZIP}
+        - INSTALL_EXTEND_COMPOSER=${INSTALL_EXTEND_COMPOSER}
     restart:
       always
     ports:
       - 9000:${PHP_DOCKER_PORT}
     volumes:
       - ${ENVIRONMENT}${PROJECT_ROOT}:/www
-      - ${ENVIRONMENT}/${PHP_DOCKER_IMAGE}/${PHP_DOCKER_IMAGE}${PHP_DOCKER_VERSION}.ini:/usr/local/etc/php/php.ini
-      - ${ENVIRONMENT}/${PHP_DOCKER_IMAGE}/php-fpm.conf:/usr/local/etc/php/php-fpm.conf
-      - ${ENVIRONMENT}/${PHP_DOCKER_IMAGE}/php-fpm.d:/usr/local/etc/php/php-fpm.d
-      - ${ENVIRONMENT}/${PHP_DOCKER_IMAGE}/sources:/etc/apt/sources_list
+      - ${ENVIRONMENT}/php/${PHP_DOCKER_VERSION}/php.ini:/usr/local/etc/php/php.ini
+      - ${ENVIRONMENT}/php/php-fpm.conf:/usr/local/etc/php/php-fpm.conf
+      - ${ENVIRONMENT}/php/php-fpm.d:/usr/local/etc/php/php-fpm.d
       - ${ENVIRONMENT}${SUPERVISOR_VERSION}/supervisord.conf:/etc/supervisor/supervisord.conf
       - ${ENVIRONMENT}${SUPERVISOR_VERSION}/logs/:/var/log/supervisor/
     depends_on:
