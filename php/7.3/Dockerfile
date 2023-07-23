@@ -10,19 +10,19 @@ RUN apt-get update && \
     zlib1g-dev  \
     libicu-dev \
     pkg-config \
+    libfreetype6-dev \
+    libmcrypt-dev \
     libpng-dev \
     libwebp-dev \
     libjpeg-dev \
-    libfreetype6-dev
 
-## php扩展
-#
+### php扩展
 RUN pecl install mcrypt  \
     && docker-php-ext-enable mcrypt \
-    && docker-php-ext-configure  gd \
-    --with-webp=/usr/include/webp \
-    --with-jpeg=/usr/include \
-    --with-freetype=/usr/include \
+    && docker-php-ext-configure gd  \
+    --with-webp=/usr/include/webp  \
+    --with-jpeg=/usr/include/  \
+    --with-freetype=/usr/include/freetype2 \
     && docker-php-ext-install gd \
     && docker-php-ext-configure intl \
     && docker-php-ext-install bcmath \
@@ -63,8 +63,8 @@ fi
 ############################## 文件安装 intl #################################
 ARG INSTALL_EXTEND_INTL=false
 RUN if [ ${INSTALL_EXTEND_INTL} = true ]; then \
-    docker-php-ext-install intl \
-;fi
+    docker-php-ext-install intl; \
+fi
 
 
 # pecl 安装
@@ -125,6 +125,3 @@ RUN if [ ${INSTALL_EXTEND_COMPOSER} = true ];  then \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
       && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/; \
 fi
-
-
-

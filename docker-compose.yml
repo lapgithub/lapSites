@@ -7,7 +7,7 @@ services:
       php${PHP_DOCKER_VERSION}
     build:
       context:
-        php/7.4/
+        php/${PHP_DOCKER_VERSION}/
       dockerfile: Dockerfile
       args:
         - INSTALL_EXTEND_SOCKETS=${INSTALL_EXTEND_SOCKETS}

@@ -63,8 +63,8 @@ fi
 ############################## 文件安装 intl #################################
 ARG INSTALL_EXTEND_INTL=false
 RUN if [ ${INSTALL_EXTEND_INTL} = true ]; then \
-    docker-php-ext-install intl \
-;fi
+    docker-php-ext-install intl; \
+fi
 
 
 # pecl 安装
