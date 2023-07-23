@@ -14,15 +14,15 @@ RUN apt-get update && \
     libmcrypt-dev \
     libpng-dev \
     libwebp-dev \
-    libjpeg-dev \
+    libjpeg-dev
 
-### php扩展
+# php扩展
 RUN pecl install mcrypt  \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-configure gd  \
-    --with-webp=/usr/include/webp  \
-    --with-jpeg=/usr/include/  \
-    --with-freetype=/usr/include/freetype2 \
+    --with-webp-dir=/usr/include/webp  \
+    --with-jpeg-dir=/usr/include/  \
+    --with-freetype-dir=/usr/include/freetype2 \
     && docker-php-ext-install gd \
     && docker-php-ext-configure intl \
     && docker-php-ext-install bcmath \
@@ -97,14 +97,6 @@ RUN if [ ${INSTALL_EXTEND_RABBITMQ} = true ];  then \
     && docker-php-ext-enable amqp; \
 fi
 
-############################## 文件安装 pgsql #################################
-ARG INSTALL_EXTEND_PGSQL=false
-RUN if [ ${INSTALL_EXTEND_PGSQL} = true ];  then \
-    apt-get install -y --on-install-recommends libpq-dev  \
-    && rm -r /var/lib/apt/lists/*  \
-    && docker-php-ext-install -j$(nproc) pgsql pdo_pgsql; \
-fi
-
 WORKDIR /tmp/
 ############################## 文件安装 zip #################################
 ARG INSTALL_EXTEND_ZIP=false
@@ -118,10 +110,18 @@ RUN if [ ${INSTALL_EXTEND_ZIP} = true ];  then \
     && rm -rf /tmp/libzip-1.2.0 tmp/libzip-1.2.0.tar.gz; \
 fi
 
+############################## 文件安装 pgsql #################################
+ARG INSTALL_EXTEND_PGSQL=false
+RUN if [ ${INSTALL_EXTEND_PGSQL} = true ];  then \
+    apt-get install -y --on-install-recommends libpq-dev  \
+    && rm -r /var/lib/apt/lists/*  \
+    && docker-php-ext-install -j$(nproc) pgsql pdo_pgsql; \
+fi
+
 WORKDIR /www/
 ############################## composer #################################
 ARG INSTALL_EXTEND_COMPOSER=false
 RUN if [ ${INSTALL_EXTEND_COMPOSER} = true ];  then \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-      && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/; \
+    && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/; \
 fi
