@@ -13,7 +13,8 @@ RUN apt-get update && \
     libpng-dev \
     libwebp-dev \
     libjpeg-dev \
-    libfreetype6-dev
+    libfreetype6-dev \
+    libmcrypt-dev
 
 ## php扩展
 #
@@ -23,6 +24,7 @@ RUN pecl install mcrypt  \
     --with-webp=/usr/include/webp \
     --with-jpeg=/usr/include \
     --with-freetype=/usr/include \
+    --with-freetype=/usr/include/freetype2 \
     && docker-php-ext-install gd \
     && docker-php-ext-configure intl \
     && docker-php-ext-install bcmath \

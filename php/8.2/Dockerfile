@@ -13,7 +13,8 @@ RUN apt-get update && \
     libpng-dev \
     libwebp-dev \
     libjpeg-dev \
-    libfreetype6-dev
+    libfreetype6-dev \
+    libmcrypt-dev
 
 ## php扩展
 #
