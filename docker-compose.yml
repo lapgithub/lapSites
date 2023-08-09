@@ -22,7 +22,7 @@ volumes:
     driver: ${VOLUMES_DRIVER}
 services:
 
-### php-fpm ##############################################
+  ### php-fpm ##############################################
   php-fpm:
     container_name:
       php${PHP_DOCKER_VERSION}
@@ -66,7 +66,7 @@ services:
     networks:
       - backend
 
-### mysql ##############################################
+  ### mysql ##############################################
   mysql:
     container_name:
       ${MYSQL_VERSION}
@@ -89,7 +89,7 @@ services:
     networks:
       - backend
 
-### nginx ##############################################
+  ### nginx ##############################################
   nginx:
     container_name:
       ${NGINX_VERSION}
@@ -111,7 +111,7 @@ services:
       - frontend
       - backend
 
-### redis ##############################################
+  ### redis ##############################################
   redis:
     container_name:
       ${REDIS_VERSION}
@@ -130,7 +130,7 @@ services:
     networks:
       - backend
 
-### mongo ##############################################
+  ### mongo ##############################################
   mongo:
     container_name:
       ${MONGO_VERSION}
@@ -152,7 +152,7 @@ services:
     networks:
       - backend
 
- ### postgres ##############################################
+  ### postgres ##############################################
   postgres:
     container_name:
       ${POSTGRES_VERSION}
@@ -176,7 +176,7 @@ services:
       - frontend
       - backend
 
-### rabbitmq ##############################################
+  ### rabbitmq ##############################################
   rabbitmq:
     container_name:
       ${RABBITMQ_VERSION}
@@ -198,7 +198,7 @@ services:
     networks:
       - backend
 
-### kibana ##############################################
+  ### kibana ##############################################
   elasticsearch:
     container_name:
       ${ELASTICSEARCH_VERSION}
@@ -222,7 +222,7 @@ services:
       - frontend
       - backend
 
-### kibana ##############################################
+  ### kibana ##############################################
   kibana:
     container_name:
       ${KIBANA_VERSION}
@@ -242,7 +242,7 @@ services:
       - frontend
       - backend
 
-### logstash ##############################################
+  ### logstash ##############################################
   logstash:
     container_name:
       ${LOGSTASH_VERSION}
