@@ -14,6 +14,15 @@ server {
     if ($request_uri ~* "/api/v1") {
          set $dirRoot "/www/localapi.hayyachat.com/public/";
     }
+    if ($request_uri ~* "/api/docs") {
+        set $dirRoot "/www/localapi.hayyachat.com/public/";
+    }
+    if ($request_uri ~* "/swagger-ui-assets") {
+        set $dirRoot "/www/localapi.hayyachat.com/public/";
+    }
+    if ($request_uri ~* "/docs") {
+        set $dirRoot "/www/localapi.hayyachat.com/public/";
+    }
 
     root $dirRoot;
 
