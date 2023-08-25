@@ -1,25 +1,4 @@
 version: '2.2'
-volumes:
-  php-fpm:
-    driver: ${VOLUMES_DRIVER}
-  mysql:
-    driver: ${VOLUMES_DRIVER}
-  nginx:
-    driver: ${VOLUMES_DRIVER}
-  redis:
-    driver: ${VOLUMES_DRIVER}
-  mongo:
-    driver: ${VOLUMES_DRIVER}
-  postgres:
-    driver: ${VOLUMES_DRIVER}
-  rabbitmq:
-    driver: ${VOLUMES_DRIVER}
-  elasticsearch:
-    driver: ${VOLUMES_DRIVER}
-  kibana:
-    driver: ${VOLUMES_DRIVER}
-  logstash:
-    driver: ${VOLUMES_DRIVER}
 services:
 
   ### php-fpm ##############################################
@@ -129,6 +108,7 @@ services:
       - ${ENVIRONMENT}${REDIS_VERSION}/logs:/var/logs
     networks:
       - backend
+      - frontend
 
   ### mongo ##############################################
   mongo:
@@ -267,10 +247,6 @@ services:
 
 networks:
   frontend:
-    driver: ${NETWORKS_DRIVER}
+    driver: bridge
   backend:
-    driver: ${NETWORKS_DRIVER}
-    driver_opts:
-      foo: "1"
-      bar: "2"
-
+    driver: bridge
