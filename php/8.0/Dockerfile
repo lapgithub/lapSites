@@ -109,7 +109,7 @@ fi
 ############################## 文件安装 protobuf #################################
 ARG INSTALL_PROTOBUF=false
 RUN if [ ${INSTALL_PROTOBUF} = true ];  then \
-    pecl pecl install protobuf \
+    pecl install protobuf \
     && docker-php-ext-enable protobuf; \
 fi
 

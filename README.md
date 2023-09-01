@@ -134,6 +134,9 @@
     kibana
     http://127.0.0.1:5601/app/home#/
 
+#### protoc 编译器
+    网盘下载protoc复制到/use/local/bin/protoc
+
 #### 6、使用 supervisor 进程管理命令之前先启动 supervisord
 
     supervisord -c /etc/supervisor/supervisord.conf
