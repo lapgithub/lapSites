@@ -29,7 +29,7 @@ services:
     restart:
       always
     ports:
-      - 9000:${PHP_DOCKER_PORT}
+      - ${PHP_DOCKER_PORT}:${PHP_DOCKER_PORT}
     volumes:
       - ${ENVIRONMENT}${PROJECT_ROOT}:/www
       - ${ENVIRONMENT}/php/${PHP_DOCKER_VERSION}/php.ini:/usr/local/etc/php/php.ini
@@ -57,7 +57,7 @@ services:
     restart:
       always
     ports:
-      - 3306:${MYSQL_PORT}
+      - ${MYSQL_PORT}:${MYSQL_PORT}
     volumes:
       - ${ENVIRONMENT}${MYSQL_VERSION}/data:/var/lib/mysql
       - ${ENVIRONMENT}${MYSQL_VERSION}/my.cnf:/etc/my.cnf
@@ -80,7 +80,7 @@ services:
     restart:
       always
     ports:
-      - 80:${NGINX_PORT}
+      - ${NGINX_PORT}:${NGINX_PORT}
     volumes:
       - ${ENVIRONMENT}${PROJECT_ROOT}:/www
       - ${ENVIRONMENT}${NGINX_VERSION}/logs:/etc/nginx/logs/
@@ -102,7 +102,7 @@ services:
     restart:
       always
     ports:
-      - 6379:${REDIS_PORT}
+      - ${REDIS_PORT}:${REDIS_PORT}
     volumes:
       - ${ENVIRONMENT}${REDIS_VERSION}/data:/data
       - ${ENVIRONMENT}${REDIS_VERSION}/redis.conf:/usr/local/etc/redis.conf
@@ -122,7 +122,7 @@ services:
     restart:
       always
     ports:
-      - 27017:${MONGO_PORT}
+      - ${MONGO_PORT}:${MONGO_PORT}
     volumes:
       - ${ENVIRONMENT}${MONGO_VERSION}/data:/data/db
       - ${ENVIRONMENT}${MONGO_VERSION}/mongod.conf:/etc/mongod.conf
@@ -144,7 +144,7 @@ services:
     restart:
       always
     ports:
-      - 5432:${POSTGRES_PORT}
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
     volumes:
       - ${ENVIRONMENT}${POSTGRES_VERSION}/data:/var/lib/postgresql/data
       - ${ENVIRONMENT}${POSTGRES_VERSION}/logs:/var/logs
@@ -168,8 +168,8 @@ services:
     restart:
       always
     ports:
-      - 5672:${RABBITMQ_PORT_PROGRAM}
-      - 15672:${RABBITMQ_PORT_ADMIN}
+      - ${RABBITMQ_PORT_PROGRAM}:${RABBITMQ_PORT_PROGRAM}
+      - ${RABBITMQ_PORT_ADMIN}:${RABBITMQ_PORT_ADMIN}
     volumes:
       - ${ENVIRONMENT}${RABBITMQ_VERSION}/data/:/var/lib/rabbitmq/
       - ${ENVIRONMENT}${RABBITMQ_VERSION}/logs/:/var/log/rabbitmq/
@@ -190,8 +190,8 @@ services:
     restart:
       always
     ports:
-      - 9200:${ELASTICSEARCH_PORT_HTTP}
-      - 9300:${ELASTICSEARCH_PORT_TCP}
+      - ${ELASTICSEARCH_PORT_HTTP}:${ELASTICSEARCH_PORT_HTTP}
+      - ${ELASTICSEARCH_PORT_TCP}:${ELASTICSEARCH_PORT_TCP}
     volumes:
       - ${ENVIRONMENT}${ELK_DIRECTORY}${ELASTICSEARCH_VERSION}/data:/usr/share/elasticsearch/data
       - ${ENVIRONMENT}${ELK_DIRECTORY}${ELASTICSEARCH_VERSION}/elasticsearch.yml:/usr/share/elasticsearch/elasticsearch.yml
@@ -212,7 +212,7 @@ services:
     build:
       ${ELK_DIRECTORY}${KIBANA_VERSION}
     ports:
-      - 5601:${KIBANA_PORT}
+      - ${KIBANA_PORT}:${KIBANA_PORT}
     volumes:
       - ${ENVIRONMENT}${ELK_DIRECTORY}${KIBANA_VERSION}/kibana.yml:/usr/share/kibana/kibana.yml:rw
     environment:
@@ -234,7 +234,7 @@ services:
     restart:
       always
     ports:
-      - 4560:${LOGSTASH_PORT}
+      - ${LOGSTASH_PORT}:${LOGSTASH_PORT}
     volumes:
       - ${ENVIRONMENT}${ELK_DIRECTORY}${LOGSTASH_VERSION}/logstash.conf:/usr/share/logstash/logstash.conf
     links:
