@@ -39,6 +39,9 @@
 /supervisor/logs/*
 !/supervisor/logs/.gitkeep
 
+/jenkins/data/*
+!/jenkins/data/.gitkeep
+
 /www/
 .idea/
 .env
