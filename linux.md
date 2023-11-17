@@ -50,3 +50,8 @@
 
     查看端口连接情况
     netstat -lap | fgrep {22}
+	awk 批量结束进程
+	ps -ef|grep command:frame_interaction|grep -v grep|awk '{print "kill -9 " $2}' |sh
+
+	git 回退
+	git reset --hard origin/master
