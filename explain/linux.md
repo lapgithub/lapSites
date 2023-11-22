@@ -1,5 +1,8 @@
 ## 复制文件到服务器 
     scp —P22 /usr/local/nginx/conf/* root@127.0.0.1:/usr/local/nginx/conf
+	
+	rsync -avz --exclude='.git' aaa.log  root@127.0.0.1:/bbb.log
+	
 
 ## mysql 导出导入
     mysqldump -h127.0.0.1 -P3306 -uroot -p123456 test > test.sql
@@ -52,6 +55,3 @@
     netstat -lap | fgrep {22}
 	awk 批量结束进程
 	ps -ef|grep command:frame_interaction|grep -v grep|awk '{print "kill -9 " $2}' |sh
-
-	git 回退
-	git reset --hard origin/master
