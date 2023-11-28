@@ -2,6 +2,7 @@
     scp —P22 /usr/local/nginx/conf/* root@127.0.0.1:/usr/local/nginx/conf
 	
 	rsync -avz --exclude='.git' aaa.log  root@127.0.0.1:/bbb.log
+	rsync -avz -e 'ssh -p 22' /test/  root@127.0.0.1:/test/
 	
 
 ## mysql 导出导入
