@@ -246,35 +246,6 @@ services:
       - frontend
       - backend
 
-  ### jenkins ##############################################
-  jenkins:
-    image:
-      ${JENKINS_VERSION}
-    build:
-      ${JENKINS_VERSION}
-    container_name:
-      ${JENKINS_VERSION}
-    restart:
-      always
-    environment:
-      - TZ=Asia/Shanghai
-    ports:
-      - ${JENKINS_PORT}:${JENKINS_PORT}
-      - ${JENKINS_PORT_SLAVE}:${JENKINS_PORT_SLAVE}
-    user: root
-    privileged: true
-    volumes:
-      # Jenkins 工作目录,主要存储数据(请注意：安装后初始化密码就挂载此路径下 /user/data/jenkins/secrets/initialAdminPassword)
-      - ${ENVIRONMENT}${JENKINS_VERSION}/data:/var/jenkins_home
-      # 将主机的Docker套接字装入容器中，这将允许Jenkins容器使用主机的Docker守护进程来构建映像并运行容器。
-      - ${DOCKER_SOCK}docker.sock:/var/run/docker.sock
-      # 容器内可共享宿主机的 docker
-      - /usr/bin/docker:/usr/bin/docker
-      # 容器内可共享宿主机的 git
-      - /usr/bin/git:/usr/bin/git
-      # 容器内享有 宿主机的docker-compose 环境（可选的）
-      # - ${ENVIRONMENT}docker-compose:/usr/local/bin/docker-compose　
-
 networks:
   frontend:
     driver: bridge
