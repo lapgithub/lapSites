@@ -82,7 +82,6 @@ services:
     ports:
       - ${NGINX_PORT}:${NGINX_PORT}
     volumes:
-      - ${ENVIRONMENT}${PROJECT_ROOT}:/www
       - ${ENVIRONMENT}${NGINX_VERSION}/logs:/etc/nginx/logs/
       - ${ENVIRONMENT}${NGINX_VERSION}:/etc/nginx/
     depends_on:
@@ -107,6 +106,25 @@ services:
       - ${ENVIRONMENT}${REDIS_VERSION}/data:/data
       - ${ENVIRONMENT}${REDIS_VERSION}/redis.conf:/usr/local/etc/redis.conf
       - ${ENVIRONMENT}${REDIS_VERSION}/logs:/var/logs
+    networks:
+      - backend
+      - frontend
+
+  ### golang ##############################################
+  golang:
+    container_name:
+      ${GOLANG_VERSION}
+    image:
+      ${GOLANG_VERSION}
+    build:
+      ${GOLANG_VERSION}
+    restart:
+      always
+    ports:
+      - ${GOLANG_PORT}:${GOLANG_PORT}
+    volumes:
+      - ${ENVIRONMENT}${PROJECT_ROOT}:/www
+    tty: true
     networks:
       - backend
       - frontend
