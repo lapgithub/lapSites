@@ -123,8 +123,8 @@ services:
     ports:
       - ${GOLANG_PORT}:${GOLANG_PORT}
     volumes:
-      - ${ENVIRONMENT}${PROJECT_ROOT}/studyGolang:/www/studyGolang:rw,z
-# tty: true
+      - ${ENVIRONMENT}${PROJECT_ROOT}/studyGolang:/www/studyGolang
+    tty: true
     networks:
       - backend
       - frontend
