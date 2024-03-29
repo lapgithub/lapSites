@@ -170,3 +170,11 @@
     wsl --export docker-desktop-data D:\docker\docker-desktop-data.tar
     wsl --unregister docker-desktop-data
     wsl --import docker-desktop-data D:\docker\ D:\docker\docker-desktop-data.tar
+
+## 7、docker 代理
+    "proxies": {
+      "default": {
+        "httpProxy": "127.0.0.1:7890",
+        "httpsProxy": "127.0.0.1:7890"
+      }
+    }
