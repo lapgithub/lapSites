@@ -124,6 +124,8 @@ services:
       - ${GOLANG_PORT}:${GOLANG_PORT}
     volumes:
       - ${ENVIRONMENT}${PROJECT_ROOT}/studyGolang:/www/studyGolang
+      - ${ENVIRONMENT}${GOLANG_VERSION}/go1.22.1/:/usr/local/go
+      - ${ENVIRONMENT}${GOLANG_VERSION}/go1.22.1/go/pkg/mod:/go/pkg/mod
     tty: true
     networks:
       - backend
