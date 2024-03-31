@@ -42,7 +42,8 @@
 /jenkins/data/*
 !/jenkins/data/.gitkeep
 
-!/golang/Dockerfile
+/golang/go1.22.1
+
 
 /www/
 .idea/
