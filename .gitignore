@@ -42,7 +42,7 @@
 /jenkins/data/*
 !/jenkins/data/.gitkeep
 
-/golang/go1.22.1
+/golang
 
 /www/
 .idea/

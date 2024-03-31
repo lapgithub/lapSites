@@ -110,27 +110,6 @@ services:
       - backend
       - frontend
 
-  ### golang ##############################################
-  golang:
-    container_name:
-      ${GOLANG_VERSION}
-    image:
-      ${GOLANG_VERSION}
-    build:
-      ${GOLANG_VERSION}
-    restart:
-      always
-    ports:
-      - ${GOLANG_PORT}:${GOLANG_PORT}
-    volumes:
-      - ${ENVIRONMENT}${PROJECT_ROOT}/studyGolang:/www/studyGolang
-      - ${ENVIRONMENT}${GOLANG_VERSION}/go1.22.1/:/usr/local/go
-      - ${ENVIRONMENT}${GOLANG_VERSION}/go1.22.1/go/pkg/mod:/go/pkg/mod
-    tty: true
-    networks:
-      - backend
-      - frontend
-
   ### mongo ##############################################
   mongo:
     container_name:
