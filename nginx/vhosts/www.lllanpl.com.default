@@ -7,24 +7,7 @@ server {
 
     error_page  404              /404.html;
 
-    set $dirRoot "/www/local.hayya.com/public/";
-    if ($request_uri ~* "/api/docs") {
-        set $dirRoot "/www/localapi.hayyachat.com/public/";
-    }
-    if ($request_uri ~* "/api/v1") {
-         set $dirRoot "/www/localapi.hayyachat.com/public/";
-    }
-    if ($request_uri ~* "/api/docs") {
-        set $dirRoot "/www/localapi.hayyachat.com/public/";
-    }
-    if ($request_uri ~* "/swagger-ui-assets") {
-        set $dirRoot "/www/localapi.hayyachat.com/public/";
-    }
-    if ($request_uri ~* "/docs") {
-        set $dirRoot "/www/localapi.hayyachat.com/public/";
-    }
-
-    root $dirRoot;
+    root /www;
 
     # redirect server error pages to the static page /50x.html
 
