@@ -82,6 +82,7 @@ services:
     ports:
       - ${NGINX_PORT}:${NGINX_PORT}
     volumes:
+      - ${ENVIRONMENT}${PROJECT_ROOT}:/www
       - ${ENVIRONMENT}${NGINX_VERSION}/logs:/etc/nginx/logs/
       - ${ENVIRONMENT}${NGINX_VERSION}:/etc/nginx/
     depends_on:
