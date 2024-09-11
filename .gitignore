@@ -32,6 +32,9 @@
 !/rabbitmq/logs/.gitkeep
 
 /redis.625/data/*
+/redis.625/data_node1/*
+/redis.625/data_node2/*
+/redis.625/data_node3/*
 !/redis.625/data/.gitkeep
 !/redis.625/data_node1/.gitkeep
 !/redis.625/data_node2/.gitkeep
