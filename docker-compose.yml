@@ -150,7 +150,7 @@ services:
       REDISClusterNodes: 'redis_node1:${REDIS_PORT_NODE1},redis_node3:${REDIS_PORT_NODE3}'
       REDISClusterReplicas: ${REDIS_CLUTER_REPLICAS}
     volumes:
-      - ${ENVIRONMENT}${REDIS_VERSION}/data_node2/data:/data
+      - ${ENVIRONMENT}${REDIS_VERSION}/data_node2/:/data
       - ${ENVIRONMENT}${REDIS_VERSION}/redis_node2.conf:/etc/redis.conf
       - ${ENVIRONMENT}${REDIS_VERSION}/logs_node2:/var/logs
     networks:
