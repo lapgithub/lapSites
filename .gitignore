@@ -31,10 +31,13 @@
 /rabbitmq/logs/*
 !/rabbitmq/logs/.gitkeep
 
-/redis/data/*
-!/redis/data/.gitkeep
-/redis/logs/*
-!/redis/logs/.gitkeep
+/redis.625/data/*
+!/redis.625/data/.gitkeep
+!/redis.625/data_node1/.gitkeep
+!/redis.625/data_node2/.gitkeep
+!/redis.625/data_node3/.gitkeep
+/redis.625/logs/*
+!/redis.625/logs/.gitkeep
 
 /supervisor/logs/*
 !/supervisor/logs/.gitkeep
