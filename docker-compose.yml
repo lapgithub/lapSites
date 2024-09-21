@@ -92,21 +92,51 @@ services:
       - backend
 
   ### redis ##############################################
+  ### redis ##############################################
   redis:
     container_name:
       ${REDIS_VERSION}
     image:
       ${REDIS_VERSION}
     build:
-      ${REDIS_VERSION}
+      context:
+        ./${REDIS_VERSION}/
+      dockerfile: Dockerfile
+      args:
+        - REDIS_PORT_6379=${REDIS_PORT_6379}
+        - REDIS_PORT_6381=${REDIS_PORT_6381}
+        - REDIS_PORT_6382=${REDIS_PORT_6382}
+        - REDIS_PORT_6383=${REDIS_PORT_6383}
+    environment:
+      - REDIS_PORT_6379=${REDIS_PORT_6379}
+      - REDIS_PORT_6381=${REDIS_PORT_6381}
+      - REDIS_PORT_6382=${REDIS_PORT_6382}
+      - REDIS_PORT_6383=${REDIS_PORT_6383}
+    command: /tmp/redis_cluster.sh
+    stdin_open: true
     restart:
       always
     ports:
-      - ${REDIS_PORT}:${REDIS_PORT}
+      - ${REDIS_PORT_6379}:${REDIS_PORT_6379}
+      - ${REDIS_PORT_6381}:${REDIS_PORT_6381}
+      - ${REDIS_PORT_6382}:${REDIS_PORT_6382}
+      - ${REDIS_PORT_6383}:${REDIS_PORT_6383}
     volumes:
-      - ${ENVIRONMENT}${REDIS_VERSION}/data:/data
-      - ${ENVIRONMENT}${REDIS_VERSION}/redis.conf:/usr/local/etc/redis.conf
-      - ${ENVIRONMENT}${REDIS_VERSION}/logs:/var/logs
+      - ${ENVIRONMENT}${REDIS_VERSION}/data/${REDIS_PORT_6379}:/var/lib/redis/${REDIS_PORT_6379}
+      - ${ENVIRONMENT}${REDIS_VERSION}/conf/${REDIS_PORT_6379}_config.conf:/etc/redis/${REDIS_PORT_6379}.conf
+      - ${ENVIRONMENT}${REDIS_VERSION}/logs/${REDIS_PORT_6379}:/var/log/redis/${REDIS_PORT_6379}
+
+      - ${ENVIRONMENT}${REDIS_VERSION}/data/${REDIS_PORT_6381}:/var/lib/redis/${REDIS_PORT_6381}
+      - ${ENVIRONMENT}${REDIS_VERSION}/conf/${REDIS_PORT_6381}_config.conf:/etc/redis/${REDIS_PORT_6381}.conf
+      - ${ENVIRONMENT}${REDIS_VERSION}/logs/${REDIS_PORT_6381}:/var/log/redis/${REDIS_PORT_6381}
+
+      - ${ENVIRONMENT}${REDIS_VERSION}/data/${REDIS_PORT_6382}:/var/lib/redis/${REDIS_PORT_6382}
+      - ${ENVIRONMENT}${REDIS_VERSION}/conf/${REDIS_PORT_6382}_config.conf:/etc/redis/${REDIS_PORT_6382}.conf
+      - ${ENVIRONMENT}${REDIS_VERSION}/logs/${REDIS_PORT_6382}:/var/log/redis/${REDIS_PORT_6382}
+
+      - ${ENVIRONMENT}${REDIS_VERSION}/data/${REDIS_PORT_6383}:/var/lib/redis/${REDIS_PORT_6383}
+      - ${ENVIRONMENT}${REDIS_VERSION}/conf/${REDIS_PORT_6383}_config.conf:/etc/redis/${REDIS_PORT_6383}.conf
+      - ${ENVIRONMENT}${REDIS_VERSION}/logs/${REDIS_PORT_6383}:/var/log/redis/${REDIS_PORT_6383}
     networks:
       - backend
       - frontend

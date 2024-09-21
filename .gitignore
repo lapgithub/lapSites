@@ -31,16 +31,11 @@
 /rabbitmq/logs/*
 !/rabbitmq/logs/.gitkeep
 
-/redis.625/data/*
-/redis.625/data_node1/*
-/redis.625/data_node2/*
-/redis.625/data_node3/*
-!/redis.625/data/.gitkeep
-!/redis.625/data_node1/.gitkeep
-!/redis.625/data_node2/.gitkeep
-!/redis.625/data_node3/.gitkeep
-/redis.625/logs/*
-!/redis.625/logs/.gitkeep
+/redis.7.2.5/conf/*
+/redis.7.2.5/data/*
+/redis.7.2.5/logs/*
+!/redis.7.2.5/data/.gitkeep
+!/redis.7.2.5/logs/.gitkeep
 
 /supervisor/logs/*
 !/supervisor/logs/.gitkeep
