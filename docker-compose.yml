@@ -92,7 +92,6 @@ services:
       - backend
 
   ### redis ##############################################
-  ### redis ##############################################
   redis:
     container_name:
       ${REDIS_VERSION}
